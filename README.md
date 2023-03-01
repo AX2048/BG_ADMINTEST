@@ -16,7 +16,7 @@
 
 ---
 
-**Watch with Dark default theme**
+**Watch with `Dark default` theme**
 
 
 
