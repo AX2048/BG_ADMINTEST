@@ -32,7 +32,6 @@ Cron задание:
 ponomero@szbewcktse:~$ crontab -e
 
 ...
-
 ponomero@szbewcktse:~$ crontab -l
 # Edit this file to introduce tasks to be run by cron.
 # 
