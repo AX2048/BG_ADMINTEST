@@ -9,6 +9,8 @@
 
 ---
 
+### Cron задание:
+
 `0 12 * * 0#3`
 
 
@@ -32,14 +34,14 @@
 SHELL=/bin/bash
 HOME=/
 
-0 12 * * 0#3 curl http://www.google.com
+0 12 * * 0#3 curl -LI http://www.google.com
 ```
 
 Структура задания:
 
 `minute` `hour` `day_of_month` `month` `day_of_week` `command_to_run`
 
----
+### Some more
 
 ```
 crontab -l
