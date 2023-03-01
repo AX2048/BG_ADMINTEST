@@ -1,3 +1,8 @@
+![](DEMON.png)
+
+---
+
+### T5: DOCKER DEMON
 ## Задача 5
 
 Поднять второй докер-демон https://github.com/mlosev/altdocker.

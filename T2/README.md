@@ -1,3 +1,8 @@
+![](THREAT.png)
+
+---
+
+### T2: COPY: A HIDDEN THREAT
 ## Задача 2
 
 Есть не пустая директория /home/paideia/dir1, есть не пустая директория /home/paideia/dir2.
