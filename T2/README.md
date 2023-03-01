@@ -35,7 +35,7 @@ drwxr-xr-x 4 alex alex 4.0K Mar  1 20:04 ..
 -rw-r--r-- 1 alex alex    0 Mar  1 08:34 nepusta2.md
 ```
 
-Простое `cp` не копирует скрытй файл `.conf`.
+**Простое `cp` не копирует скрытй файл `.conf`.**
 
 ```
 $ cp dir1/* dir2/
