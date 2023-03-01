@@ -17,13 +17,3 @@
 ---
 
 **Watch with `Dark default` theme**
-
-
-
-
-
-
-
-
-
-
