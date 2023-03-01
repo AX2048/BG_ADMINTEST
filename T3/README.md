@@ -23,16 +23,6 @@ iptables -A OUTPUT -p tcp --dport 3306 -j LOG --log-prefix "MySQL Outgoing: "
 
 `--log-prefix` добавляет префикс к сообщению журнала, в нашем случае `MySQL Outgoing: `
 
-Просмотреть журналы:
-
-```
-tail -f /var/log/syslog | grep "MySQL Outgoing"
-```
-
-Сохранить правила iptables, чтобы они сохранялись при перезагрузке:
-```
-iptables-save > /etc/iptables/rules.v4
-```
 
 ### Use 
 
@@ -50,4 +40,17 @@ num   pkts bytes target     prot opt in     out     source               destina
 
 ponomero@szbewcktse:~$ sudo iptables --line-numbers -L -v -n | grep "MySQL Outgoing"
 7        0     0 LOG        tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:3306 LOG flags 0 level 4 prefix "MySQL Outgoing: "
+```
+
+### Some more
+
+Просмотреть журналы:
+
+```
+tail -f /var/log/syslog | grep "MySQL Outgoing"
+```
+
+Сохранить правила iptables, чтобы они сохранялись при перезагрузке:
+```
+iptables-save > /etc/iptables/rules.v4
 ```
