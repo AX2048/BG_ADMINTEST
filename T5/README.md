@@ -100,7 +100,7 @@ INFO[0001] API listen on /home/ponomero/altdocker/altdocker/dae1/docker.sock
 ```
 Демон успешно запушен и реагирует на наши дейтсвия.
 
-**tty2** - запуск докер клиента (adminer на порту 8080)
+**tty2** - запуск докер клиента (adminer на порт 8080)
 ```
 ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 version
 Client:
@@ -182,7 +182,7 @@ cat /proc/cgroups | column -t
 Подключиться из него к базе на хостинге (предварительно создав её на тестовом аккаунте).
 
 1. Устанавливаем docker по официальной инсрукции.
-2. Запускаем контейнер с adminer на порте 8080:
+2. Запускаем контейнер с adminer на порт 8080:
 ```
 docker run -p 8080:8080 adminer
 ```
