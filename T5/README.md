@@ -50,23 +50,28 @@ INFO[0006] libcontainerd: new containerd process, pid: 16336
 WARN[0000] containerd: low RLIMIT_NOFILE changing to max  current=1024 max=524288
 FATA[0000] can't create unix socket /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdocker/dae1/exec/libcontainerd/docker-containerd.sock: listen unix /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdocker/dae1/exec/libcontainerd/docker-containerd.sock: bind: invalid argument
 ```
+Всё плохо.
 
 ### UBUNTU SERVER WAY
-tty1
+tty1 - запуск докер демона
 ```
+ponomero@szbewcktse:~/altdocker$ sudo apt install bridge-utils
+
+ponomero@szbewcktse:~/altdocker$ sudo apt-get install -y cgroupfs-mount
+
 ponomero@szbewcktse:~/altdocker$ sudo service docker stop
 Warning: Stopping docker.service, but it can still be activated by:
   docker.socket
-ponomero@szbewcktse:~/altdocker$ sudo service containerd stop
-ponomero@szbewcktse:~/altdocker$ sudo cgroupfs-umount
-rmdir: failed to remove 'init.scope': Device or resource busy
-rmdir: failed to remove 'system.slice': Device or resource busy
-rmdir: failed to remove 'user.slice': Device or resource busy
+
 ponomero@szbewcktse:~/altdocker$ sudo systemctl stop docker.socket
+
+ponomero@szbewcktse:~/altdocker$ sudo service containerd stop
+
 ponomero@szbewcktse:~/altdocker$ sudo cgroupfs-umount
 rmdir: failed to remove 'init.scope': Device or resource busy
 rmdir: failed to remove 'system.slice': Device or resource busy
 rmdir: failed to remove 'user.slice': Device or resource busy
+
 ponomero@szbewcktse:~/altdocker$ sudo cgroupfs-mount
 mount: /sys/fs/cgroup/cpuset: cgroup already mounted or mount point busy.
 mount: /sys/fs/cgroup/cpu: cgroup already mounted or mount point busy.
@@ -91,11 +96,22 @@ INFO[0001] Daemon has completed initialization
 INFO[0001] Docker daemon                                 commit=23cf638 graphdriver=overlay2 version=1.12.1
 INFO[0001] API listen on /home/ponomero/altdocker/altdocker/dae1/docker.sock 
 ```
+Демон успешно запушен и реагирует на наши дейтсвия.
 
-tty2
+tty2 - запуск докер клиента (adminer на порту 8080)
 ```
 $ sudo bash cli-dae1 run -p 8080:8080 adminer
 docker: Error response from daemon: oci runtime error: rootfs_linux.go:53: mounting "/sys/fs/cgroup" to rootfs "/home/ponomero/altdocker/altdocker/dae1/graph/overlay2/ad5ec5455abb5fed489310c814929e1664d49ed9b9b8e792217320a3d048b573/merged" caused "no subsystem for mount".
+
+ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+adminer             latest              dcabc6cf54dd        19 hours ago        250.1 MB
+
+ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
+10c9bfb3e790        adminer             "entrypoint.sh php -S"   About a minute ago   Created                                 focused_wing
+
+
 ```
 
 ### Симлинки:
@@ -106,7 +122,7 @@ ln -s /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdocker.sh cli-dae1
 ln -s /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdockerd.sh dae1
 ```
 
-### Some fix
+### Some more
 ```
 sudo service docker stop
 sudo service containerd stop
@@ -119,3 +135,5 @@ sudo systemctl stop docker
 sudo systemctl stop docker.socket
 sudo systemctl stop containerd
 ```
+
+VPS IP: 62.113.97.245
