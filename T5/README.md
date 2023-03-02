@@ -102,6 +102,23 @@ INFO[0001] API listen on /home/ponomero/altdocker/altdocker/dae1/docker.sock
 
 **tty2** - запуск докер клиента (adminer на порту 8080)
 ```
+ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 version
+Client:
+ Version:      1.12.1
+ API version:  1.24
+ Go version:   go1.6.3
+ Git commit:   23cf638
+ Built:        Thu Aug 18 17:52:38 2016
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      1.12.1
+ API version:  1.24
+ Go version:   go1.6.3
+ Git commit:   23cf638
+ Built:        Thu Aug 18 17:52:38 2016
+ OS/Arch:      linux/amd64
+
 $ sudo bash cli-dae1 run -p 8080:8080 adminer
 docker: Error response from daemon: oci runtime error: rootfs_linux.go:53: mounting "/sys/fs/cgroup" to rootfs "/home/ponomero/altdocker/altdocker/dae1/graph/overlay2/ad5ec5455abb5fed489310c814929e1664d49ed9b9b8e792217320a3d048b573/merged" caused "no subsystem for mount".
 
@@ -115,12 +132,12 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 
 ```
-Чтож... Пока не работает клиент. Моё альтернативное решение смотри ниже.
+Чтож... Пока что клиент не может запустить контейнер. Моё альтернативное решение смотри ниже.
 ### Commands
 
 `sudo bash dae1` - daemon
 
-`sudo bash cli-dae1 run -p 8080:8080 adminer` - cli
+`sudo bash cli-dae1` - cli, напиример `run -p 8080:8080 adminer`
 
 ### CGROUP
 
@@ -165,7 +182,7 @@ cat /proc/cgroups | column -t
 Подключиться из него к базе на хостинге (предварительно создав её на тестовом аккаунте).
 
 1. Устанавливаем docker по официальной инсрукции.
-2. Запускаем контейнер с adminer на порту 8080:
+2. Запускаем контейнер с adminer на порте 8080:
 ```
 docker run -p 8080:8080 adminer
 ```
@@ -182,3 +199,13 @@ ponomag1.beget.tech
 Заходим http://62.113.97.245:8080 и видим:
 
 ![](Adminer1.png)
+
+### Вывод
+
+Из информации в интрнете и моих действий, могу предположить, что проблема в версии docker в репозитории из задания - `1.12.1`. На новых версиях docker контейнер adminer'а создаётся и работает легко, как на UBUNTU SERVER, так и на ARCH LINUX.
+
+Похоже, что старый docker, cgroups и новые дистры linux не дружат между собой. Скорее всего проблему можно решить через cgroupfs настроив монтирвание.
+
+Также проблему можно решить создав altdocker из бинарников более новыйх версий docker.
+
+Либо установив docker в ОС, создовать контейнеры напрямую docker'ом, без altdocker.
