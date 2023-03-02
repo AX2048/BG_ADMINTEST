@@ -57,7 +57,7 @@ FATA[0000] can't create unix socket /home/alex/Documents/CODE/BG_AdminTest/T5/al
 ```
 ponomero@szbewcktse:~/altdocker$ sudo apt install bridge-utils
 
-ponomero@szbewcktse:~/altdocker$ sudo apt-get install -y cgroupfs-mount - сомнительное решение
+ponomero@szbewcktse:~/altdocker$ sudo apt-get install -y cgroupfs-mount 
 
 ponomero@szbewcktse:~/altdocker$ sudo apt-get -y install cgroup-tools
 
