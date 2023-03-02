@@ -121,14 +121,6 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 `sudo bash cli-dae1 run -p 8080:8080 adminer` - cli
 
-### Симлинки:
-```
-$ ln -s /path/to/file /path/to/symlink
-
-ln -s /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdocker.sh cli-dae1
-ln -s /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdockerd.sh dae1
-```
-
 ### CGROUP
 
 ```
@@ -166,3 +158,27 @@ VPS `ponomero@szbewcktse` IP: 62.113.97.245
 ```
 cat /proc/cgroups | column -t
 ```
+
+### Рабочее решение
+
+Сделать так, чтобы можно было открыть web-интерфейс adminer-а введя http://localhost:8080 в браузере.
+Подключиться из него к базе на хостинге (предварительно создав её на тестовом аккаунте).
+
+1. Устанавливаем докир по официальной инсрукции.
+2. Команды:
+```
+docker run -p 8080:8080 adminer
+```
+
+DB connection: (убери 555)
+```
+ponomag1_adtest
+
+%3kjgUgK555
+
+ponomag1.beget.tech
+```
+
+Заходим http://62.113.97.245:8080 и видим:
+
+![](Adminer1.png)
