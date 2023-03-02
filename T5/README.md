@@ -1,8 +1,8 @@
-![](DEMON.png)
+![](DAEMON.png)
 
 ---
 
-### T5: DOCKER DEMON
+### T5: DOCKER DAEMON
 ## Задача 5
 
 Поднять второй докер-демон https://github.com/mlosev/altdocker.
@@ -117,7 +117,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 ### Commands
 
-`sudo bash dae1` - deamon
+`sudo bash dae1` - daemon
 
 `sudo bash cli-dae1 run -p 8080:8080 adminer` - cli
 

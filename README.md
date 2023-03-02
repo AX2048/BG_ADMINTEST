@@ -12,7 +12,7 @@
 
 ### T4: EVERY THIRD SUNDAY
 
-### T5: DOCKER DEMON
+### T5: DOCKER DAEMON
 
 ---
 
