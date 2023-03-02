@@ -115,6 +115,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 
 ```
+Чтож... Пока не работает клиент. Моё альтернативное решении смотри ниже.
 ### Commands
 
 `sudo bash dae1` - daemon
@@ -146,7 +147,6 @@ sudo cgroupfs-mount
 sudo service containerd start
 sudo service docker start
 
-sudo systemctl stop docker
 sudo systemctl stop docker.socket
 sudo systemctl stop containerd
 
@@ -159,7 +159,7 @@ VPS `ponomero@szbewcktse` IP: 62.113.97.245
 cat /proc/cgroups | column -t
 ```
 
-### Рабочее решение
+### Рабочее fast решение
 
 Сделать так, чтобы можно было открыть web-интерфейс adminer-а введя http://localhost:8080 в браузере.
 Подключиться из него к базе на хостинге (предварительно создав её на тестовом аккаунте).
