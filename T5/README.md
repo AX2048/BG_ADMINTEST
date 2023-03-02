@@ -57,7 +57,9 @@ FATA[0000] can't create unix socket /home/alex/Documents/CODE/BG_AdminTest/T5/al
 ```
 ponomero@szbewcktse:~/altdocker$ sudo apt install bridge-utils
 
-ponomero@szbewcktse:~/altdocker$ sudo apt-get install -y cgroupfs-mount
+ponomero@szbewcktse:~/altdocker$ sudo apt-get install -y cgroupfs-mount - сомнительное решение
+
+ponomero@szbewcktse:~/altdocker$ sudo apt-get -y install cgroup-tools
 
 ponomero@szbewcktse:~/altdocker$ sudo service docker stop
 Warning: Stopping docker.service, but it can still be activated by:
@@ -113,6 +115,11 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 
 ```
+### Commands
+
+`sudo bash dae1` - deamon
+
+`sudo bash cli-dae1 run -p 8080:8080 adminer` - cli
 
 ### Симлинки:
 ```
@@ -120,6 +127,22 @@ $ ln -s /path/to/file /path/to/symlink
 
 ln -s /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdocker.sh cli-dae1
 ln -s /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdockerd.sh dae1
+```
+
+### CGROUP
+
+```
+ponomero@szbewcktse:~/altdocker$ mount | grep cgroup
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot)
+cgroup on /sys/fs/cgroup/cpuacct type cgroup (rw,relatime,cpuacct)
+cgroup on /sys/fs/cgroup/devices type cgroup (rw,relatime,devices)
+cgroup on /sys/fs/cgroup/freezer type cgroup (rw,relatime,freezer)
+cgroup on /sys/fs/cgroup/net_cls type cgroup (rw,relatime,net_cls)
+cgroup on /sys/fs/cgroup/perf_event type cgroup (rw,relatime,perf_event)
+cgroup on /sys/fs/cgroup/net_prio type cgroup (rw,relatime,net_prio)
+cgroup on /sys/fs/cgroup/hugetlb type cgroup (rw,relatime,hugetlb)
+cgroup on /sys/fs/cgroup/rdma type cgroup (rw,relatime,rdma)
+cgroup on /sys/fs/cgroup/misc type cgroup (rw,relatime,misc)
 ```
 
 ### Some more
@@ -134,6 +157,12 @@ sudo service docker start
 sudo systemctl stop docker
 sudo systemctl stop docker.socket
 sudo systemctl stop containerd
+
+mount -t cgroup cgroup /sys/fs/cgroup
 ```
 
 VPS `ponomero@szbewcktse` IP: 62.113.97.245
+
+```
+cat /proc/cgroups | column -t
+```
