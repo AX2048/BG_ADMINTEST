@@ -53,7 +53,7 @@ FATA[0000] can't create unix socket /home/alex/Documents/CODE/BG_AdminTest/T5/al
 Всё плохо.
 
 ### UBUNTU SERVER WAY
-tty1 - запуск докер демона
+**tty1** - запуск докер демона
 ```
 ponomero@szbewcktse:~/altdocker$ sudo apt install bridge-utils
 
@@ -98,7 +98,7 @@ INFO[0001] API listen on /home/ponomero/altdocker/altdocker/dae1/docker.sock
 ```
 Демон успешно запушен и реагирует на наши дейтсвия.
 
-tty2 - запуск докер клиента (adminer на порту 8080)
+**tty2** - запуск докер клиента (adminer на порту 8080)
 ```
 $ sudo bash cli-dae1 run -p 8080:8080 adminer
 docker: Error response from daemon: oci runtime error: rootfs_linux.go:53: mounting "/sys/fs/cgroup" to rootfs "/home/ponomero/altdocker/altdocker/dae1/graph/overlay2/ad5ec5455abb5fed489310c814929e1664d49ed9b9b8e792217320a3d048b573/merged" caused "no subsystem for mount".
@@ -136,4 +136,4 @@ sudo systemctl stop docker.socket
 sudo systemctl stop containerd
 ```
 
-VPS IP: 62.113.97.245
+VPS `ponomero@szbewcktse` IP: 62.113.97.245
