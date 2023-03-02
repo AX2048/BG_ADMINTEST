@@ -11,6 +11,7 @@
 
 ---
 
+### ARCH LINUX WAY
 ```
 $ sh get_docker.sh
 + DOCKER_VERSION=1.12.1
@@ -50,10 +51,71 @@ WARN[0000] containerd: low RLIMIT_NOFILE changing to max  current=1024 max=52428
 FATA[0000] can't create unix socket /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdocker/dae1/exec/libcontainerd/docker-containerd.sock: listen unix /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdocker/dae1/exec/libcontainerd/docker-containerd.sock: bind: invalid argument
 ```
 
-Симлинки:
+### UBUNTU SERVER WAY
+tty1
+```
+ponomero@szbewcktse:~/altdocker$ sudo service docker stop
+Warning: Stopping docker.service, but it can still be activated by:
+  docker.socket
+ponomero@szbewcktse:~/altdocker$ sudo service containerd stop
+ponomero@szbewcktse:~/altdocker$ sudo cgroupfs-umount
+rmdir: failed to remove 'init.scope': Device or resource busy
+rmdir: failed to remove 'system.slice': Device or resource busy
+rmdir: failed to remove 'user.slice': Device or resource busy
+ponomero@szbewcktse:~/altdocker$ sudo systemctl stop docker.socket
+ponomero@szbewcktse:~/altdocker$ sudo cgroupfs-umount
+rmdir: failed to remove 'init.scope': Device or resource busy
+rmdir: failed to remove 'system.slice': Device or resource busy
+rmdir: failed to remove 'user.slice': Device or resource busy
+ponomero@szbewcktse:~/altdocker$ sudo cgroupfs-mount
+mount: /sys/fs/cgroup/cpuset: cgroup already mounted or mount point busy.
+mount: /sys/fs/cgroup/cpu: cgroup already mounted or mount point busy.
+mount: /sys/fs/cgroup/blkio: cgroup already mounted on /sys/fs/cgroup/cpuacct.
+mount: /sys/fs/cgroup/memory: cgroup already mounted on /sys/fs/cgroup/cpuacct.
+mount: /sys/fs/cgroup/pids: cgroup already mounted on /sys/fs/cgroup/cpuacct.
+
+ponomero@szbewcktse:~/altdocker$ sudo bash dae1
+INFO[0000] libcontainerd: new containerd process, pid: 1952 
+WARN[0000] containerd: low RLIMIT_NOFILE changing to max  current=1024 max=1048576
+INFO[0001] Graph migration to content-addressability took 0.00 seconds 
+WARN[0001] Your kernel does not support cgroup memory limit 
+WARN[0001] Unable to find cpu cgroup in mounts          
+WARN[0001] Unable to find blkio cgroup in mounts        
+WARN[0001] Unable to find cpuset cgroup in mounts       
+WARN[0001] mountpoint for pids not found                
+INFO[0001] Loading containers: start.                   
+INFO[0001] Firewalld running: false                     
+
+INFO[0001] Loading containers: done.                    
+INFO[0001] Daemon has completed initialization          
+INFO[0001] Docker daemon                                 commit=23cf638 graphdriver=overlay2 version=1.12.1
+INFO[0001] API listen on /home/ponomero/altdocker/altdocker/dae1/docker.sock 
+```
+
+tty2
+```
+$ sudo bash cli-dae1 run -p 8080:8080 adminer
+docker: Error response from daemon: oci runtime error: rootfs_linux.go:53: mounting "/sys/fs/cgroup" to rootfs "/home/ponomero/altdocker/altdocker/dae1/graph/overlay2/ad5ec5455abb5fed489310c814929e1664d49ed9b9b8e792217320a3d048b573/merged" caused "no subsystem for mount".
+```
+
+### Симлинки:
 ```
 $ ln -s /path/to/file /path/to/symlink
 
 ln -s /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdocker.sh cli-dae1
 ln -s /home/alex/Documents/CODE/BG_AdminTest/T5/altdocker/altdockerd.sh dae1
+```
+
+### Some fix
+```
+sudo service docker stop
+sudo service containerd stop
+sudo cgroupfs-umount
+sudo cgroupfs-mount
+sudo service containerd start
+sudo service docker start
+
+sudo systemctl stop docker
+sudo systemctl stop docker.socket
+sudo systemctl stop containerd
 ```
