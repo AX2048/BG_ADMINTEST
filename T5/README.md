@@ -136,7 +136,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 **UPD 2023-03-14**
 
-Хотя команда `info` выполняется:
+Команда `info` выполняется:
 ```
 ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 info
 Containers: 14
@@ -205,9 +205,12 @@ ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 run --tmpfs /sys/fs/cgroup -
 
 ![](altdocker_eee.png)
 
-Проблему запуска контейнера решила команда монтирования `--tmpfs /sys/fs/cgroup`. Более подробно здесь: https://docs.docker.com/storage/tmpfs/
+Проблему запуска контейнера решила команда монтирования `--tmpfs /sys/fs/cgroup`. 
+
+Более подробно про монтирование здесь: https://docs.docker.com/storage/tmpfs/
 
 Спасибо golern256!
+
 **END UPD**
 
 
