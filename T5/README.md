@@ -134,6 +134,8 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 Чтож... Пока что клиент не может запустить контейнер. 
 
+**UPD 2023-03-14**
+
 Хотя команда `info` выполняется:
 ```
 ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 info
@@ -177,6 +179,37 @@ WARNING: No cpuset support
 Insecure Registries:
  127.0.0.0/8
 ```
+
+Рабочая команда `bash cli-dae1 run --tmpfs /sys/fs/cgroup -p 8080:8080 adminer`.
+```
+ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 run --tmpfs /sys/fs/cgroup -p 8080:8080 adminer
+[Tue Mar 14 01:34:10 2023] PHP 7.4.33 Development Server (http://[::]:8080) started
+[Tue Mar 14 01:34:46 2023] [::ffff:5.101.159.136]:40958 Accepted
+[Tue Mar 14 01:34:46 2023] [::ffff:5.101.159.136]:40958 [200]: GET /
+[Tue Mar 14 01:34:46 2023] [::ffff:5.101.159.136]:40958 Closing
+[Tue Mar 14 01:34:46 2023] [::ffff:5.101.159.136]:40964 Accepted
+[Tue Mar 14 01:34:46 2023] [::ffff:5.101.159.136]:40964 [200]: GET /?file=default.css&version=4.8.1
+[Tue Mar 14 01:34:46 2023] [::ffff:5.101.159.136]:40964 Closing
+[Tue Mar 14 01:34:46 2023] [::ffff:5.101.159.136]:40974 Accepted
+[Tue Mar 14 01:34:46 2023] [::ffff:5.101.159.136]:40974 [200]: GET /?file=functions.js&version=4.8.1
+[Tue Mar 14 01:34:46 2023] [::ffff:5.101.159.136]:40974 Closing
+[Tue Mar 14 01:34:47 2023] [::ffff:5.101.159.136]:40990 Accepted
+[Tue Mar 14 01:34:47 2023] [::ffff:5.101.159.136]:40990 [200]: POST /?script=version
+[Tue Mar 14 01:34:47 2023] [::ffff:5.101.159.136]:40990 Closing
+[Tue Mar 14 01:34:47 2023] [::ffff:5.101.159.136]:41000 Accepted
+[Tue Mar 14 01:34:47 2023] [::ffff:5.101.159.136]:41000 [200]: GET /?file=favicon.ico&version=4.8.1
+[Tue Mar 14 01:34:47 2023] [::ffff:5.101.159.136]:41000 Closing
+
+```
+В данном случае приложение `adminer` запустилось.
+
+![](altdocker_eee.png)
+
+Проблему запуска контейнера решила команда монтирования `--tmpfs /sys/fs/cgroup`. Более подробно здесь: https://docs.docker.com/storage/tmpfs/
+
+Спасибо golern256!
+**END UPD**
+
 
 Моё альтернативное решение смотри ниже.
 ### Commands
