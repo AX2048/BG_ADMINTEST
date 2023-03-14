@@ -2,7 +2,7 @@
 
 ---
 
-### T5: DOCKER DAEMON
+# T5: DOCKER DAEMON
 ## Задача 5
 
 Поднять второй докер-демон https://github.com/mlosev/altdocker.
@@ -132,7 +132,53 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 
 ```
-Чтож... Пока что клиент не может запустить контейнер. Моё альтернативное решение смотри ниже.
+Чтож... Пока что клиент не может запустить контейнер. 
+
+Хотя команда `info` выполняется:
+```
+ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 info
+Containers: 14
+ Running: 0
+ Paused: 0
+ Stopped: 14
+Images: 2
+Server Version: 1.12.1
+Storage Driver: overlay2
+ Backing Filesystem: extfs
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: host overlay null bridge
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Security Options: apparmor seccomp
+Kernel Version: 5.15.0-67-generic
+Operating System: Ubuntu 22.04.2 LTS
+OSType: linux
+Architecture: x86_64
+CPUs: 2
+Total Memory: 1.929 GiB
+Name: szbewcktse
+ID: W735:TWSD:OLTY:5EHJ:B2QW:UQ2I:6SRK:BM6G:MHIP:WMFY:G3PW:4BPX
+Docker Root Dir: /home/ponomero/altdocker/altdocker/dae1/graph
+Debug Mode (client): false
+Debug Mode (server): false
+Registry: https://index.docker.io/v1/
+WARNING: No memory limit support
+WARNING: No swap limit support
+WARNING: No kernel memory limit support
+WARNING: No oom kill disable support
+WARNING: No cpu cfs quota support
+WARNING: No cpu cfs period support
+WARNING: No cpu shares support
+WARNING: No cpuset support
+Insecure Registries:
+ 127.0.0.0/8
+```
+
+Моё альтернативное решение смотри ниже.
 ### Commands
 
 `sudo bash dae1` - daemon
