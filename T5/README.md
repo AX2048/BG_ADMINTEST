@@ -205,11 +205,11 @@ ponomero@szbewcktse:~/altdocker$ sudo bash cli-dae1 run --tmpfs /sys/fs/cgroup -
 
 ![](altdocker_eee.png)
 
-Проблему запуска контейнера решила команда монтирования `--tmpfs /sys/fs/cgroup`. 
+Проблему запуска контейнера решена использованием ключа: `--tmpfs /sys/fs/cgroup`. 
 
 Более подробно про монтирование здесь: https://docs.docker.com/storage/tmpfs/
 
-Спасибо golern256!
+Спасибо [golern256](https://github.com/golern256)!
 
 **END UPD**
 
